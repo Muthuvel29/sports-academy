@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sport Academy TN - Registration</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #dceeff, #ffffff);
+            padding: 30px 15px;
+        }
+
+        /* Main container */
+
+        .container {
+            max-width: 1050px;
+            margin: auto;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 38% 62%;
+            box-shadow: 0 10px 40px rgba(0, 40, 100, 0.15);
+        }
+
+        /* Left image section */
+
+        .image-section {
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(0, 35, 90, 0.15),
+                    rgba(0, 35, 90, 0.9)
+                ),
+                url("../images/sport-academy.jpg");
+
+            background-size: cover;
+            background-position: center;
+            min-height: 750px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 35px;
+            color: white;
+        }
+
+        .image-section h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .image-section p {
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* Form section */
+
+        .form-section {
+            padding: 40px;
+        }
+
+        .form-section h2 {
+            text-align: center;
+            color: #0755b5;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: #0755b5;
+            font-size: 19px;
+            margin: 25px 0 18px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e4efff;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-group {
+            flex: 1;
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+            font-size: 14px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #cbd8e8;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #0765d5;
+            box-shadow: 0 0 5px rgba(0, 100, 220, 0.15);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* Sports selection */
+
+        .sports-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .sport-card {
+            border: 1px solid #cbdcf2;
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #f6faff;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .sport-card:hover {
+            border-color: #0765d5;
+            background: #eaf3ff;
+        }
+
+        .sport-card input {
+            width: auto;
+            accent-color: #0765d5;
+        }
+
+        .sport-icon {
+            font-size: 28px;
+        }
+
+        /* Button */
+
+        .register-btn {
+            width: 100%;
+            padding: 15px;
+            margin-top: 25px;
+            background: linear-gradient(90deg, #0755d9, #3793ff);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .register-btn:hover {
+            background: #0645ad;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 22px;
+            color: #666;
+        }
+
+        .login-link a {
+            color: #0755d9;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .home-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #0755d9;
+            text-decoration: none;
+        }
+
+        /* Responsive design */
+
+        @media(max-width: 750px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .image-section {
+                min-height: 250px;
+            }
+
+            .form-section {
+                padding: 25px 20px;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+
+        @media(max-width: 450px) {
+            .sports-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Left image section -->
+
+    <div class="image-section">
+
+        <h1>Sport Academy TN</h1>
+
+        <p>
+            Play with Passion.<br>
+            Learn with Dedication.<br>
+            Grow with Confidence.
+        </p>
+
+        <p style="margin-top:20px;">
+            🏏 Cricket | ⚽ Football<br>
+            🏐 Volleyball | 🤼 Kabaddi
+        </p>
+
+    </div>
+
+
+    <!-- Registration form -->
+
+    <div class="form-section">
+
+        <h2>Student Registration</h2>
+
+        <p class="subtitle">
+            Join Sport Academy TN and start your journey!
+        </p>
+
+        <form id="registerForm">
+
+            <h3 class="section-title">Personal Information</h3>
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName"
+                           name="fullName"
+                           placeholder="Enter full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob"
+                           name="dateOfBirth" required>
+                </div>
+
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+
+                    <select id="gender" name="gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+
+                    <input type="tel" id="phone"
+                           name="phone"
+                           placeholder="10-digit phone number"
+                           pattern="[0-9]{10}"
+                           maxlength="10" required>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="email">Email Address</label>
+
+                <input type="email" id="email"
+                       name="email"
+                       placeholder="Enter email address" required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="address">Address</label>
+
+                <textarea id="address" name="address"
+                          placeholder="Enter your address"
+                          required></textarea>
+
+            </div>
+
+
+            <h3 class="section-title">Choose Your Sport</h3>
+
+            <div class="sports-grid">
+
+                <label class="sport-card">
+                    <input type="radio" name="sport"
+                           value="Kabaddi" required>
+                    <span class="sport-icon">🤼</span>
+                    <span>Kabaddi</span>
+                </label>
+
+                <label class="sport-card">
+                    <input type="radio" name="sport"
+                           value="Cricket">
+                    <span class="sport-icon">🏏</span>
+                    <span>Cricket</span>
+                </label>
+
+                <label class="sport-card">
+                    <input type="radio" name="sport"
+                           value="Football">
+                    <span class="sport-icon">⚽</span>
+                    <span>Football</span>
+                </label>
+
+                <label class="sport-card">
+                    <input type="radio" name="sport"
+                           value="Volleyball">
+                    <span class="sport-icon">🏐</span>
+                    <span>Volleyball</span>
+                </label>
+
+            </div>
+
+
+            <h3 class="section-title">Account Information</h3>
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+
+                    <input type="password" id="password"
+                           name="password"
+                           placeholder="Create password"
+                           minlength="6" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">
+                        Confirm Password
+                    </label>
+
+                    <input type="password" id="confirmPassword"
+                           name="confirmPassword"
+                           placeholder="Confirm password"
+                           minlength="6" required>
+                </div>
+
+            </div>
+
+
+            <button type="submit" class="register-btn">
+                Register Now →
+            </button>
+
+            <p class="login-link">
+                Already have an account?
+                <a href="login.html">Login Here</a>
+            </p>
+
+            <a href="index.html" class="home-link">
+                ← Back to Home
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+document.getElementById("registerForm")
+.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const form = event.target;
+    const data = Object.fromEntries(new FormData(form));
+
+    // Do not send confirmPassword to the backend
+    delete data.confirmPassword;
+
+    try {
+        const response = await fetch(
+            "http://localhost:8080/api/students/register",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(await response.text());
+        }
+
+        const result = await response.json();
+
+        alert("Registration successful! Welcome " + result.fullName);
+
+        form.reset();
+
+    } catch (error) {
+        alert("Registration failed: " + error.message);
+        console.error(error);
+    }
+});
+</script>
+
+</body>
+</html>

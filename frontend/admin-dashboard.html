@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sport Academy TN - Admin Dashboard</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b0c15;
+            color: #e8e8f1;
+            margin: 0;
+            padding: 30px 18px;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: auto;
+            background: #151522;
+            padding: 30px;
+            border: 1px solid #292837;
+            border-radius: 17px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+        }
+
+        h1 {
+            text-align: center;
+            color: #e8e7f1;
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            margin: 0 0 25px;
+            color: #aaa8bc;
+            text-align: center;
+            font-size: 17px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #c9c7d6;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 7px;
+            box-sizing: border-box;
+            border: 1px solid #363547;
+            border-radius: 8px;
+            background: #10111c;
+            color: #e8e8f1;
+            font: inherit;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #858397;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #31a8df;
+            box-shadow: 0 0 0 3px rgba(49,168,223,0.15);
+        }
+
+        select option {
+            background: #151522;
+            color: #e8e8f1;
+        }
+
+        textarea {
+            height: 110px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 22px;
+            background: linear-gradient(100deg, #167cae, #6650bd);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: filter 0.2s, transform 0.2s;
+        }
+
+        button:hover {
+            filter: brightness(1.15);
+            transform: translateY(-1px);
+        }
+
+        .management-btn {
+            display: inline-block;
+            background: linear-gradient(100deg, #167cae, #6650bd);
+            color: white;
+            padding: 12px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px;
+            transition: filter 0.2s, transform 0.2s;
+        }
+
+        .management-btn:hover {
+            filter: brightness(1.15);
+            transform: translateY(-1px);
+        }
+
+        #status {
+            text-align: center;
+            margin-top: 15px;
+            min-height: 20px;
+            color: #aaa8bc;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Sport Academy TN</h1>
+    <h2>Admin Dashboard</h2>
+
+    <a href="student-management.html" class="management-btn">
+        👨‍🎓 Student Management
+    </a>
+
+    <form id="announcementForm">
+
+        <label>Announcement Title</label>
+        <input type="text" id="title" required>
+
+        <label>Event / Match Details</label>
+        <textarea id="message" required></textarea>
+
+        <label>Event Image URL</label>
+        <input type="url" id="imageUrl"
+               placeholder="Enter image URL">
+
+        <label>Select Sport</label>
+        <select id="targetSport" required>
+            <option value="">Choose Sport</option>
+            <option value="ALL">All Students</option>
+            <option value="Kabaddi">Kabaddi</option>
+            <option value="Cricket">Cricket</option>
+            <option value="Football">Football</option>
+            <option value="Volleyball">Volleyball</option>
+        </select>
+
+        <label>Event Date</label>
+        <input type="date" id="eventDate">
+
+        <button type="submit">Publish Announcement</button>
+
+    </form>
+
+    <p id="status"></p>
+
+</div>
+
+<script>
+// Check admin login session
+window.addEventListener("DOMContentLoaded", async function () {
+
+    try {
+        const response = await fetch(
+            "http://localhost:8080/api/admin/me",
+            {
+                method: "GET",
+                credentials: "include"
+            }
+        );
+
+        if (!response.ok) {
+            window.location.href = "admin-login.html";
+            return;
+        }
+
+        console.log("Admin session verified");
+
+    } catch (error) {
+        console.error("Session error:", error);
+        alert("Unable to verify admin login.");
+        window.location.href = "admin-login.html";
+    }
+});
+
+
+// Publish announcement
+document.getElementById("announcementForm")
+.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const announcement = {
+        title: document.getElementById("title").value,
+        message: document.getElementById("message").value,
+        imageUrl: document.getElementById("imageUrl").value,
+        targetSport: document.getElementById("targetSport").value,
+        eventDate: document.getElementById("eventDate").value || null
+    };
+
+    try {
+        const response = await fetch(
+            "http://localhost:8080/api/announcements/create",
+            {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(announcement)
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error("Unable to publish announcement");
+        }
+
+        document.getElementById("status").style.color = "green";
+        document.getElementById("status").textContent =
+            "Announcement published successfully!";
+
+        document.getElementById("announcementForm").reset();
+
+    } catch (error) {
+        document.getElementById("status").style.color = "red";
+        document.getElementById("status").textContent =
+            "Error: " + error.message;
+    }
+});
+</script>
+
+</body>
+</html>

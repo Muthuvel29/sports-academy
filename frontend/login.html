@@ -1,0 +1,687 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Sport Academy TN</title>
+
+    <style>
+        :root {
+            --blue: #1264ee;
+            --dark-blue: #102c62;
+            --text: #18345f;
+            --muted: #7183a5;
+            --border: #d9e5f8;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #edf5ff;
+            color: var(--text);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Navigation */
+        .navbar {
+            height: 82px;
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            box-shadow: 0 4px 20px #163e7c0c;
+            position: relative;
+            z-index: 2;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, #1264ee, #45a4ff);
+            border-radius: 14px;
+            color: white;
+            font-size: 25px;
+        }
+
+        .brand h2 {
+            font-size: 21px;
+            color: var(--dark-blue);
+        }
+
+        .brand p {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 3px;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            color: #405477;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color .2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active {
+            color: var(--blue);
+        }
+
+        .nav-links .register-link {
+            background: var(--blue);
+            color: white;
+            padding: 13px 20px;
+            border-radius: 9px;
+        }
+
+        .nav-links .register-link:hover {
+            background: #084cc4;
+        }
+
+        /* Main split layout */
+        .page {
+            min-height: calc(100vh - 82px);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        /* Sports image panel */
+        .art-panel {
+            min-height: 700px;
+            position: relative;
+            overflow: hidden;
+            color: white;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(5, 32, 88, .10) 45%,
+                    rgba(5, 25, 73, .90) 100%
+                ),
+                url("../images/sport-academy.jpg");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .art-caption {
+            position: absolute;
+            left: 8%;
+            right: 8%;
+            bottom: 35px;
+            padding: 25px;
+            border: 1px solid #ffffff45;
+            border-radius: 18px;
+            background: #082e72a8;
+            backdrop-filter: blur(10px);
+        }
+
+        .art-caption .eyebrow {
+            color: #ffdc56;
+            font-size: 12px;
+            letter-spacing: 2px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .art-caption h1 {
+            font-size: clamp(28px, 3vw, 42px);
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+
+        .art-caption p {
+            color: #e1edff;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .sports-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 20px;
+        }
+
+        .sports-tags span {
+            padding: 8px 12px;
+            border-radius: 30px;
+            border: 1px solid #ffffff45;
+            background: #ffffff17;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Login side */
+        .form-panel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 45px 7%;
+            background:
+                radial-gradient(
+                    circle at top right,
+                    #d7e9ff,
+                    transparent 45%
+                ),
+                #f7faff;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 470px;
+            padding: 40px;
+            border: 1px solid #ffffff;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, .94);
+            box-shadow: 0 20px 65px #244e8d12;
+        }
+
+        .card-brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 34px;
+        }
+
+        .card-brand .brand-icon {
+            width: 58px;
+            height: 58px;
+            font-size: 30px;
+            border-radius: 17px;
+        }
+
+        .card-brand h2 {
+            color: var(--blue);
+            font-size: 22px;
+            line-height: 1.3;
+        }
+
+        .card-brand p {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .welcome {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .welcome h1 {
+            color: var(--dark-blue);
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .welcome p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .field {
+            margin-bottom: 21px;
+        }
+
+        .field label {
+            display: block;
+            margin-bottom: 9px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .input-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 15px;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            background: white;
+            transition: border-color .2s, box-shadow .2s;
+        }
+
+        .input-wrap:focus-within {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 4px #1264ee12;
+        }
+
+        .input-icon {
+            color: #5374aa;
+            font-size: 19px;
+        }
+
+        .input-wrap input {
+            width: 100%;
+            min-width: 0;
+            height: 53px;
+            border: none;
+            outline: none;
+            color: var(--text);
+            background: transparent;
+            font-size: 14px;
+        }
+
+        .input-wrap input::placeholder {
+            color: #93a4c2;
+        }
+
+        .password-toggle {
+            border: none;
+            background: transparent;
+            color: var(--blue);
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .form-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin: 5px 0 25px;
+            font-size: 12px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: #53698e;
+        }
+
+        .remember input {
+            accent-color: var(--blue);
+        }
+
+        .text-link {
+            color: var(--blue);
+            font-weight: 700;
+        }
+
+        .text-link:hover {
+            text-decoration: underline;
+        }
+
+        .login-button {
+            width: 100%;
+            min-height: 55px;
+            border: none;
+            border-radius: 11px;
+            color: white;
+            background: linear-gradient(100deg, #0759e8, #4095ff);
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 8px 20px #1264ee27;
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px #1264ee38;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 25px 0;
+            color: #8a9bb8;
+            font-size: 12px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            height: 1px;
+            flex: 1;
+            background: #dce6f6;
+        }
+
+        .register-box {
+            display: block;
+            padding: 16px 10px;
+            text-align: center;
+            background: #f0f7ff;
+            border: 1px solid #d4e5ff;
+            border-radius: 11px;
+            color: #627799;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .back-home {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: var(--blue);
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        /* Smaller screens */
+        @media (max-width: 1050px) {
+            .page {
+                grid-template-columns: 0.9fr 1.1fr;
+            }
+
+            .login-card {
+                padding: 30px 25px;
+            }
+
+            .brand h2 {
+                font-size: 18px;
+            }
+
+            .nav-links {
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .navbar {
+                height: auto;
+                min-height: 75px;
+                padding: 16px 5%;
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .page {
+                grid-template-columns: 1fr;
+            }
+
+            .art-panel {
+                min-height: 560px;
+                background-size: cover;
+                background-position: left center;
+            }
+
+            .art-caption {
+                bottom: 20px;
+                padding: 20px;
+            }
+
+            .form-panel {
+                padding: 35px 5%;
+            }
+
+            .login-card {
+                max-width: 500px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .brand h2 {
+                font-size: 16px;
+            }
+
+            .brand p {
+                font-size: 10px;
+            }
+
+            .card-brand h2 {
+                font-size: 18px;
+            }
+
+            .welcome h1 {
+                font-size: 29px;
+            }
+
+            .login-card {
+                padding: 25px 19px;
+            }
+
+            .form-options {
+                align-items: flex-start;
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <a href="index.html" class="brand">
+            <div class="brand-icon">🏆</div>
+            <div>
+                <h2>Sport Academy TN</h2>
+                <p>PLAY · LEARN · GROW</p>
+            </div>
+        </a>
+
+        <nav class="nav-links">
+            <a href="index.html">⌂ Home</a>
+            <a href="login.html" class="active">Login</a>
+            <a href="registration.html" class="register-link">
+                Register Now
+            </a>
+        </nav>
+    </header>
+
+    <main class="page">
+
+        <!-- Left side: Sports artwork -->
+        <section class="art-panel">
+            <div class="art-caption">
+                <p class="eyebrow">YOUR GAME. YOUR FUTURE.</p>
+
+                <h1>
+                    Train Hard.<br>
+                    Dream Bigger.
+                </h1>
+
+                <p>
+                    Discover your potential, build your skills,
+                    and join the next generation of sporting talent
+                    at Sport Academy TN.
+                </p>
+
+                <div class="sports-tags">
+                    <span>🤼 Kabaddi</span>
+                    <span>🏏 Cricket</span>
+                    <span>⚽ Football</span>
+                    <span>🏐 Volleyball</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right side: Login form -->
+        <section class="form-panel">
+            <div class="login-card">
+
+                <div class="card-brand">
+                    <div class="brand-icon">🏆</div>
+                    <div>
+                        <h2>Sport Academy TN</h2>
+                        <p>Student Sports Registration System</p>
+                    </div>
+                </div>
+
+                <div class="welcome">
+                    <h1>Welcome Back!</h1>
+                    <p>
+                        Login to your account to continue
+                        your sporting journey.
+                    </p>
+                </div>
+
+                <form id="loginForm">
+
+                    <div class="field">
+                        <label for="email">Email Address</label>
+
+                        <div class="input-wrap">
+                            <span class="input-icon">✉</span>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Enter your email address"
+                                autocomplete="email"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="password">Password</label>
+
+                        <div class="input-wrap">
+                            <span class="input-icon">🔒</span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required>
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="togglePassword">
+                                SHOW
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="remember">
+                            <input type="checkbox" name="remember">
+                            Remember me
+                        </label>
+
+                        <a href="#" class="text-link" id="forgotPassword">
+                            Forgot Password?
+                        </a>
+                    </div>
+
+                    <button type="submit" class="login-button">
+                        Login &nbsp; →
+                    </button>
+
+                </form>
+
+                <div class="divider">OR</div>
+
+                <div class="register-box">
+                    Don't have an account?
+                    <a href="registration.html" class="text-link">
+                        Register Now
+                    </a>
+                </div>
+
+                <a href="index.html" class="back-home">
+                    ← Back to Home
+                </a>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Show or hide password
+        const passwordInput = document.getElementById("password");
+        const togglePassword = document.getElementById("togglePassword");
+
+        togglePassword.addEventListener("click", function () {
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                togglePassword.textContent = "HIDE";
+            } else {
+                passwordInput.type = "password";
+                togglePassword.textContent = "SHOW";
+            }
+        });
+
+        document.getElementById("loginForm").addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            try {
+                const response = await fetch("http://localhost:8080/api/students/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error("Invalid email or password");
+                }
+
+                const student = await response.json();
+
+                alert("Login successful! Welcome " + student.fullName);
+
+                // Save student details for the dashboard
+                sessionStorage.setItem("studentId", student.id);
+                sessionStorage.setItem("studentName", student.fullName);
+                sessionStorage.setItem("studentEmail", student.email);
+                sessionStorage.setItem("studentSport", student.sport);
+
+                window.location.href = "student-dashboard.html";
+
+            } catch (error) {
+                alert(error.message);
+                console.error(error);
+            }
+        });
+
+        document.getElementById("forgotPassword").addEventListener("click", function (event) {
+            event.preventDefault();
+
+            alert("Password recovery will be added in a future step.");
+        });
+    </script>
+
+</body>
+</html>
+

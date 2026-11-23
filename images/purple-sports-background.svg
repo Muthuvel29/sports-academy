@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#090A15"/>
+      <stop offset=".58" stop-color="#1A1031"/>
+      <stop offset="1" stop-color="#11172E"/>
+    </linearGradient>
+    <radialGradient id="sphere" cx="0" cy="0" r="1" gradientTransform="matrix(270 285 -285 270 1010 270)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7C9FF"/>
+      <stop offset=".12" stop-color="#D875FF"/>
+      <stop offset=".38" stop-color="#963FD2"/>
+      <stop offset=".72" stop-color="#4A216F"/>
+      <stop offset="1" stop-color="#171126"/>
+    </radialGradient>
+    <linearGradient id="trail" x1="0" y1="0" x2="1600" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6C4AFF" stop-opacity="0"/>
+      <stop offset=".28" stop-color="#D84BFF" stop-opacity=".8"/>
+      <stop offset=".58" stop-color="#FF83E8"/>
+      <stop offset=".78" stop-color="#8E8BFF"/>
+      <stop offset="1" stop-color="#54D5FF" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="soft-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="24"/>
+    </filter>
+    <filter id="trail-glow" x="-10%" y="-80%" width="120%" height="260%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+    <clipPath id="sphere-clip">
+      <circle cx="1080" cy="410" r="205"/>
+    </clipPath>
+  </defs>
+
+  <path fill="url(#background)" d="M0 0h1600v900H0z"/>
+  <ellipse cx="1130" cy="470" rx="340" ry="300" fill="#A33BFF" opacity=".22" filter="url(#soft-glow)"/>
+  <ellipse cx="520" cy="760" rx="470" ry="120" fill="#5424B8" opacity=".18" filter="url(#soft-glow)"/>
+
+  <g opacity=".45">
+    <circle cx="1080" cy="410" r="257" stroke="#C566FF" stroke-opacity=".24" stroke-width="2"/>
+    <circle cx="1080" cy="410" r="282" stroke="#8C55FF" stroke-opacity=".15" stroke-width="1.5"/>
+  </g>
+
+  <circle cx="1080" cy="410" r="205" fill="#C64EFF" opacity=".48" filter="url(#soft-glow)"/>
+  <circle cx="1080" cy="410" r="205" fill="url(#sphere)"/>
+  <g clip-path="url(#sphere-clip)" opacity=".34">
+    <path d="M850 340c135 85 310 96 467 24M850 402c135 85 310 96 467 24M850 464c135 85 310 96 467 24M850 526c135 85 310 96 467 24" stroke="#F0B8FF" stroke-width="3"/>
+    <path d="M1015 188c-65 145-66 293-4 444M1080 188c-65 145-66 293-4 444M1145 188c-65 145-66 293-4 444" stroke="#E4A5FF" stroke-opacity=".45" stroke-width="2"/>
+  </g>
+  <ellipse cx="1015" cy="288" rx="78" ry="31" fill="#FFE5FF" opacity=".35" filter="url(#soft-glow)"/>
+
+  <g filter="url(#trail-glow)" opacity=".75">
+    <path d="M-40 575c190-128 314-102 476 6 155 103 240 86 372-22 146-119 251-117 385 4 131 117 241 115 447-12" stroke="url(#trail)" stroke-width="12"/>
+    <path d="M-30 658c202-100 314-91 476-2 170 93 258 72 385-30 154-123 263-110 389 10 126 120 227 131 426 47" stroke="url(#trail)" stroke-width="9"/>
+  </g>
+  <g opacity=".82">
+    <path d="M-40 575c190-128 314-102 476 6 155 103 240 86 372-22 146-119 251-117 385 4 131 117 241 115 447-12" stroke="url(#trail)" stroke-width="3"/>
+    <path d="M-30 658c202-100 314-91 476-2 170 93 258 72 385-30 154-123 263-110 389 10 126 120 227 131 426 47" stroke="url(#trail)" stroke-width="2"/>
+    <path d="M0 720c180-54 315-44 469 26 176 81 307 32 431-48 141-90 256-79 390 12 104 70 202 86 310 73" stroke="#A786FF" stroke-opacity=".5" stroke-width="2"/>
+  </g>
+
+  <g fill="#E9A3FF">
+    <circle cx="260" cy="250" r="3" opacity=".7"/>
+    <circle cx="338" cy="305" r="2" opacity=".55"/>
+    <circle cx="425" cy="220" r="2.5" opacity=".65"/>
+    <circle cx="556" cy="350" r="2" opacity=".75"/>
+    <circle cx="720" cy="278" r="3" opacity=".45"/>
+    <circle cx="1330" cy="238" r="2.5" opacity=".55"/>
+    <circle cx="1420" cy="360" r="2" opacity=".7"/>
+    <circle cx="1490" cy="295" r="3" opacity=".45"/>
+  </g>
+</svg>

@@ -1,0 +1,500 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sport Academy TN | Student Registration</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #100817;
+            color: #f1e8f4;
+        }
+
+        /* Navigation bar */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 7%;
+            background: #160d1e;
+            border-bottom: 1px solid #39213f;
+            box-shadow: 0 4px 20px #00000035;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: 800;
+            color: #f1c8ff;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        nav a {
+            color: #d8cbdc;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff79c9;
+        }
+
+        nav .register-link {
+            color: white;
+            background: linear-gradient(110deg, #c92f8d, #7446bf);
+            padding: 12px 20px;
+            border-radius: 8px;
+        }
+
+        nav .register-link:hover {
+            background: linear-gradient(110deg, #e64b9f, #8c5bd4);
+            color: white;
+        }
+
+        /* Hero section */
+        .hero {
+            min-height: 570px;
+            display: flex;
+            align-items: center;
+            padding: 75px 8%;
+            color: white;
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            background:
+                linear-gradient(100deg, rgba(17, 4, 28, 0.7), rgba(49, 11, 71, 0.28)),
+                url("../images/homepage-background.avif") center 56% / cover no-repeat;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            animation: fadeIn 1s ease;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 10px 16px;
+            border: 1px solid #f6afff66;
+            background: #a82d9e33;
+            border-radius: 30px;
+            margin-bottom: 25px;
+            font-size: 13px;
+            letter-spacing: 1px;
+            color: #ffe0fb;
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 5vw, 62px);
+            line-height: 1.15;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 span {
+            color: #ff76c8;
+        }
+
+        .hero p {
+            max-width: 570px;
+            font-size: 17px;
+            line-height: 1.8;
+            color: #f1e4f2;
+            margin-bottom: 32px;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 15px 28px;
+            border-radius: 9px;
+            margin: 0 10px 10px 0;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .primary-btn {
+            background: linear-gradient(110deg, #ff58a6, #a855f7);
+            color: #260c2a;
+        }
+
+        .secondary-btn {
+            color: white;
+            border: 1px solid #f5d2ff;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px #00000030;
+        }
+
+        /* Sports section */
+        .sports {
+            padding: 75px 8%;
+            text-align: center;
+            background: #100817;
+        }
+
+        .section-label {
+            color: #f17ecf;
+            font-weight: 800;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .sports h2 {
+            font-size: 36px;
+            margin: 14px 0;
+            color: #f5eafa;
+        }
+
+        .section-description {
+            color: #c3b2ca;
+            line-height: 1.7;
+            margin-bottom: 38px;
+        }
+
+        .sports-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .sport-card {
+            background: #1b1022;
+            border: 1px solid #3b2641;
+            border-radius: 16px;
+            overflow: hidden;
+            text-align: left;
+            box-shadow: 0 8px 25px #00000035;
+            transition: 0.3s;
+        }
+
+        .sport-card:hover {
+            transform: translateY(-8px);
+            border-color: #8c4c9a;
+            box-shadow: 0 16px 35px #00000055;
+        }
+
+        .sport-card:nth-child(1) {
+            border-top: 2px solid #ec4a9d;
+        }
+
+        .sport-card:nth-child(2) {
+            border-top: 2px solid #ba4be3;
+        }
+
+        .sport-card:nth-child(3) {
+            border-top: 2px solid #8b67f2;
+        }
+
+        .sport-card:nth-child(4) {
+            border-top: 2px solid #ff85c2;
+        }
+
+        .sport-card img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .sport-info {
+            padding: 22px;
+        }
+
+        .sport-info h3 {
+            font-size: 21px;
+            margin-bottom: 10px;
+            color: #f2e7f5;
+        }
+
+        .sport-info p {
+            color: #bfaec5;
+            font-size: 14px;
+            line-height: 1.7;
+            min-height: 48px;
+        }
+
+        /* Registration banner */
+        .cta {
+            margin: 0 8% 75px;
+            padding: 48px 25px;
+            text-align: center;
+            border-radius: 20px;
+            color: white;
+            background:
+                radial-gradient(ellipse at 90% 0, #f857bb44, transparent 40%),
+                linear-gradient(120deg, #4a174d, #752c9f);
+            border: 1px solid #75407b;
+        }
+
+        .cta h2 {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            color: #eadced;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .cta .btn {
+            background: #fae7fb;
+            color: #48184b;
+        }
+
+        /* Footer */
+        footer {
+            background: #160d1e;
+            border-top: 1px solid #39213f;
+            color: #c6b5cd;
+            text-align: center;
+            padding: 28px 15px;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Tablet */
+        @media (max-width: 1000px) {
+            .sports-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 18px;
+                padding: 18px 5%;
+            }
+
+            nav {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+
+            .hero {
+                min-height: 500px;
+                padding: 55px 6%;
+            }
+
+            .hero {
+                background-position: 58% center;
+            }
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .sports {
+                padding: 55px 6%;
+            }
+
+            .sports h2 {
+                font-size: 29px;
+            }
+
+            .sports-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sport-card img {
+                height: 220px;
+            }
+
+            .cta {
+                margin: 0 6% 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <div class="logo">🏆 Sport Academy TN</div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+            <a href="registration.html" class="register-link">
+                Register Now
+            </a>
+        </nav>
+    </header>
+
+    <!-- Welcome section -->
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+
+                <div class="tag">
+                    ⭐ YOUR GAME. YOUR FUTURE.
+                </div>
+
+                <h1>
+                    Welcome to<br>
+                    Sport Academy <span>TN</span>
+                </h1>
+
+                <p>
+                    Discover your talent, develop your skills, and
+                    achieve your sporting dreams. Join our student
+                    sports community and choose the sport you love!
+                </p>
+
+                <a href="registration.html" class="btn primary-btn">
+                    Register Now &nbsp; →
+                </a>
+
+                <a href="login.html" class="btn secondary-btn">
+                    Student Login
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Available sports -->
+        <section class="sports" id="sports">
+
+            <div class="section-label">Find Your Game</div>
+
+            <h2>Our Available Sports</h2>
+
+            <p class="section-description">
+                Choose your passion. Improve your skills.
+                Become a champion with Sport Academy TN.
+            </p>
+
+            <div class="sports-grid">
+
+                <!-- Kabaddi -->
+                <article class="sport-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=700&q=80"
+                        alt="Sports training"
+                        loading="lazy">
+
+                    <div class="sport-info">
+                        <h3>🤼 Kabaddi</h3>
+                        <p>
+                            Build strength, agility, confidence,
+                            and teamwork through Kabaddi.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Cricket -->
+                <article class="sport-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=700&q=80"
+                        alt="Cricket ground"
+                        loading="lazy">
+
+                    <div class="sport-info">
+                        <h3>🏏 Cricket</h3>
+                        <p>
+                            Improve your batting, bowling,
+                            fielding, and match strategy.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Football -->
+                <article class="sport-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=700&q=80"
+                        alt="Football field"
+                        loading="lazy">
+
+                    <div class="sport-info">
+                        <h3>⚽ Football</h3>
+                        <p>
+                            Develop speed, coordination,
+                            teamwork, and football skills.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Volleyball -->
+                <article class="sport-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?auto=format&fit=crop&w=700&q=80"
+                        alt="Volleyball game"
+                        loading="lazy">
+
+                    <div class="sport-info">
+                        <h3>🏐 Volleyball</h3>
+                        <p>
+                            Practice serving, passing, jumping,
+                            and playing together as a team.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Registration call to action -->
+        <section class="cta">
+            <h2>Ready to Start Your Sports Journey?</h2>
+
+            <p>
+                Register as a student and select your favorite
+                sport to become part of Sport Academy TN.
+            </p>
+
+            <a href="registration.html" class="btn">
+                Join Our Academy →
+            </a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>Sport Academy TN</strong></p>
+        <p>Student Sports Registration System</p>
+        <p>© 2026 Sport Academy TN. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+```
